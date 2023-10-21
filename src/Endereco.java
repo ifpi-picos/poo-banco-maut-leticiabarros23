@@ -18,9 +18,17 @@ public class Endereco {
     return rua;
     }
 
+    public void setRua(String rua) {
+    this.rua = rua;
+    }
+
     // Método para obter o cep do cliente
     public String getCep(){
     return cep;
+    }
+
+    public void setCep(String cep) {
+    this.cep = cep;
     }
 
     //Método para obter o número
@@ -28,8 +36,16 @@ public class Endereco {
     return numero;
     }
 
+    public void setNumero(int numero) {
+    this.numero = numero;
+    }
+
     // Método para obter o bairro do cliente
     public String getBairro(){
     return bairro;
+    }
+
+    public void setBairro(String bairro) {
+    this.bairro = bairro;
     }
 }
