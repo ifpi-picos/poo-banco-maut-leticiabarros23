@@ -1,5 +1,8 @@
+package br.edu.ifpi.poo.cliente;
 // Usado para permitir o uso de datas 
 import java.time.LocalDate;
+
+import br.edu.ifpi.poo.endereco.Endereco;
 
 // Declaração dos atributos da classe Cliente
 public class Client {

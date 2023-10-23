@@ -1,3 +1,4 @@
+package br.edu.ifpi.poo.transacao;
 // Usado para permitir o uso de datas
 import java.time.LocalDate;
 

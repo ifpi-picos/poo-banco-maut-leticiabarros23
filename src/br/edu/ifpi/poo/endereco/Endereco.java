@@ -1,3 +1,4 @@
+package br.edu.ifpi.poo.endereco;
 // Declaração dos atributos da classe Endereço
 public class Endereco {
     private String rua;
