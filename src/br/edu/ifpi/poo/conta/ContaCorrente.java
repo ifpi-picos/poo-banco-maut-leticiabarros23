@@ -55,16 +55,15 @@ public class ContaCorrente extends Conta {
     }
 
     @Override
-        public void depositar(double valor) {
-            if (valor > 0) {
-                saldo += valor;
-                System.out.println("Depósito de R$" + valor + " realizado com sucesso.");
-                
-            } else {
-                System.out.println("Erro: O valor do depósito deve ser maior que zero.");
-             } 
+    public void depositar(double valor) {
+        if (valor > 0) {
+            saldo += valor;
+            System.out.println("Depósito de R$" + valor + " realizado com sucesso.");
+
+        } else {
+            System.out.println("Erro: O valor do depósito deve ser maior que zero.");
+
         }
 
- 
     }
 }
