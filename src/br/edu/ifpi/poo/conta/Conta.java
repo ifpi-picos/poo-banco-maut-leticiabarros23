@@ -4,25 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifpi.poo.cliente.Client;
+import br.edu.ifpi.poo.notificacao.Notificacao;
 import br.edu.ifpi.poo.transacao.Transacao;
 
 public abstract class Conta  {
+    private static int numeroConta = 1;
     private Client cliente;
     private int numeroAgencia;
-    private int numeroConta;
-    private double saldo;
+    protected double saldo;
     private List<Transacao> transacao;
+    protected Notificacao notificacao;
+    private int numero;
 
-    // Variável estática para contar o número de contas criadas.
-    private static int contadorContas = 0;
 
     // Construtor da classe Conta
-    public Conta(Client cliente, int numeroAgencia) {
+    public Conta(Client cliente, int numeroAgencia, Notificacao notificacao) {
         this.cliente = cliente;
         this.numeroAgencia = numeroAgencia;
-        this.numeroConta = ++contadorContas;
         this.saldo = 0.0;
         this.transacao = new ArrayList<>();
+        this.notificacao = notificacao;
+        this.numero = numeroConta++;
     }
 
     // Método para obter o número da agência 
@@ -32,8 +34,23 @@ public abstract class Conta  {
 
     public void setNumeroAgencia(int numeroAgencia) {
     this.numeroAgencia = numeroAgencia;
-}
+    }
 
+    public int getNumero(){
+    return numero;
+    }
+
+    public Notificacao getNotificacao() {
+        return notificacao;
+    }
+
+    public Client getCliente() {
+        return cliente;
+    }
+
+    public void setNotificacao(Notificacao notificacao) {
+        this.notificacao = notificacao;
+    }
     // Método para obter o saldo da conta 
     public double getSaldo() {
         return saldo;
@@ -62,31 +79,21 @@ public abstract class Conta  {
     }
  
     // Método para depositar na conta, aumentando o saldo
-    public void depositar(double valor) {
-        this.saldo += valor;
-        addHistoricoTransacao(valor, "deposito");
-    }
+    public abstract void depositar(double valor);
 
-    // Método para reallizar saque na conta, podendo diminuir o valor se tiver dinheiro suficiente 
-    public boolean saque(double valor){
-        if(this.saldo >= valor){
-            this.saldo -= valor;
-            this.addHistoricoTransacao(valor*-1, "saque");
-            return true;
-        }else{
-            return false;
-        }
+    // Método para realizar saque na conta, podendo diminuir o valor se tiver dinheiro suficiente 
+    public abstract boolean saque(double valor);
+
+    public abstract void transferir(Conta destino, double valor);
+   
+    public List<Transacao> getTransacao() {
+        return transacao;
     }
 
     public void exibeExtrato(){
         this.transacao.forEach(t -> System.out.println(t));
         System.out.println("Saldo atual: " + this.saldo);
         System.out.println("################");
-    }
-
-    private void addHistoricoTransacao(double valor, String tipo){
-        Transacao t = new Transacao(LocalDate.now(), valor, tipo);
-        this.transacao.add(t);
     }
 
     public static Conta get(int i) {
