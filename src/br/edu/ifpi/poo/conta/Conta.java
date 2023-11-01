@@ -1,13 +1,12 @@
 package br.edu.ifpi.poo.conta;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
-
 import br.edu.ifpi.poo.cliente.Client;
 import br.edu.ifpi.poo.notificacao.Notificacao;
 import br.edu.ifpi.poo.transacao.Transacao;
 
-public abstract class Conta  {
+public abstract class Conta {
     private static int numeroConta = 1;
     private Client cliente;
     private int numeroAgencia;
@@ -27,17 +26,17 @@ public abstract class Conta  {
         this.numero = numeroConta++;
     }
 
-    // Método para obter o número da agência 
-    public int getNumeroAgencia(){
+    // Método para obter o número da agência
+    public int getNumeroAgencia() {
         return numeroAgencia;
     }
 
     public void setNumeroAgencia(int numeroAgencia) {
-    this.numeroAgencia = numeroAgencia;
+        this.numeroAgencia = numeroAgencia;
     }
 
-    public int getNumero(){
-    return numero;
+    public int getNumero() {
+        return numero;
     }
 
     public Notificacao getNotificacao() {
@@ -51,46 +50,48 @@ public abstract class Conta  {
     public void setNotificacao(Notificacao notificacao) {
         this.notificacao = notificacao;
     }
-    // Método para obter o saldo da conta 
+
+    // Método para obter o saldo da conta
     public double getSaldo() {
         return saldo;
     }
 
     // Método para definir o saldo da conta
     public void setSaldo(double saldo) {
-    this.saldo = saldo;
+        this.saldo = saldo;
     }
 
     // Método para obter o cliente da conta
     public Client getClient() {
         return cliente;
     }
+
     public void setCliente(Client client) {
-    this.cliente = client;
+        this.cliente = client;
     }
 
     // Método para obter o número da conta
-    public int getNumeroConta(){
+    public int getNumeroConta() {
         return numeroConta;
     }
 
-    public void SetNumeroConta(int NumeroConta){
-    this.numeroConta = NumeroConta;
+    public void SetNumeroConta(int NumeroConta) {
+        this.numeroConta = NumeroConta;
     }
- 
+
     // Método para depositar na conta, aumentando o saldo
     public abstract void depositar(double valor);
 
-    // Método para realizar saque na conta, podendo diminuir o valor se tiver dinheiro suficiente 
+    // Método para realizar saque na conta, podendo diminuir o valor se tiver dinheiro suficiente
     public abstract boolean saque(double valor);
 
     public abstract void transferir(Conta destino, double valor);
-   
+
     public List<Transacao> getTransacao() {
         return transacao;
     }
 
-    public void exibeExtrato(){
+    public void exibeExtrato() {
         this.transacao.forEach(t -> System.out.println(t));
         System.out.println("Saldo atual: " + this.saldo);
         System.out.println("################");
